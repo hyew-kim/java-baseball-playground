@@ -3,8 +3,7 @@ package study;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 public class StringTest {
     @Test
@@ -43,13 +42,16 @@ public class StringTest {
     * */
     @Test
     @DisplayName("String's method 기능 테스트")
-    void charAt() {
-        String targetStr = "abc";
+    public void StringIndexOutOfBoundsExceptionTest() {
+        String testString = "Hello";
+
         assertThatThrownBy(() -> {
-            targetStr.charAt(4);
-        }).isInstanceOf(IndexOutOfBoundsException.class)
-                .hasMessageContaining("String index out or range");
-
+            // exception 테스트하고자 하는 메소드 또는 코드 블록
+            // testString의 길이는 5이므로, 유효한 인덱스 범위는 0~4입니다.
+            // 인덱스 5를 요청하면 StringIndexOutOfBoundsException이 발생합니다.
+            char ch = testString.charAt(5);
+        })
+                .isInstanceOf(StringIndexOutOfBoundsException.class) // 예외 타입 검증
+                .hasMessageContaining("String index out of range"); // 예외 메시지 내용 검증
     }
-
 }
